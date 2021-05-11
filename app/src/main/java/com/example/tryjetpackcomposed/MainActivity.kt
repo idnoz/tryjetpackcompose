@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -20,21 +22,36 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Row(
+            Column(
                 modifier = Modifier
-                    .width(WIDTH.dp)
-                    .fillMaxHeight(fraction = HEIGHT)
-                    .background(Color.Green),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+                    .background(Color.Green)
+                    .fillMaxHeight(fraction = 0.5f)
+                    .fillMaxWidth()
+                    .border(5.dp, Color.Magenta)
+                    .padding(5.dp)
+                    .border(5.dp, Color.Blue)
+                    .padding(5.dp)
+                    .border(10.dp, Color.Red)
+                    .padding(10.dp)
             ) {
-                Text(text = "Hello")
+                Text(
+                    text = "Hello",
+                    modifier = Modifier
+                        .border(5.dp, Color.Yellow)
+                        .padding(5.dp)
+                        .offset(20.dp, 20.dp)
+                        .border(10.dp, Color.Black)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(text = "Hello", modifier = Modifier
+                    .padding(20.dp)
+                    .clickable {
+
+                    })
+                Spacer(modifier = Modifier.height(50.dp))
                 Text(text = "World")
-                Text(text = "Test")
             }
         }
     }
 }
-
-const val WIDTH = 300
-const val HEIGHT = 0.7f
