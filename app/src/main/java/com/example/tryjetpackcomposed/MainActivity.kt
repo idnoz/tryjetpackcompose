@@ -12,29 +12,79 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.tryjetpackcomposed.ui.theme.TryJetpackComposedTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val fontFamily = FontFamily(
+            Font(R.font.lexend_thin, FontWeight.Thin),
+            Font(R.font.lexend_thin, FontWeight.Light),
+            Font(R.font.lexend_regular, FontWeight.Normal),
+            Font(R.font.lexend_medium, FontWeight.Medium),
+            Font(R.font.lexend_semibold, FontWeight.SemiBold),
+            Font(R.font.lexend_bold, FontWeight.Bold),
+            Font(R.font.lexend_extrabold, FontWeight.ExtraBold)
+        )
+
         setContent {
-            Row(
+            Box(
                 modifier = Modifier
-                    .width(WIDTH.dp)
-                    .fillMaxHeight(fraction = HEIGHT)
-                    .background(Color.Green),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+                    .fillMaxSize()
+                    .background(Color(0xFF101010))
             ) {
-                Text(text = "Hello")
-                Text(text = "World")
-                Text(text = "Test")
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("J")
+                        }
+                        append("etpack")
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.White,
+                                fontSize = 30.sp,
+                                textDecoration = TextDecoration.None
+                            )
+                        ) {
+                            append(" ")
+                        }
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Green,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("C")
+                        }
+                        append("ompose")
+                    },
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    textDecoration = TextDecoration.Underline
+                )
             }
         }
     }
 }
 
-const val WIDTH = 300
-const val HEIGHT = 0.7f
