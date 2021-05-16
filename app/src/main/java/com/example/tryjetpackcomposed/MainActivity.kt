@@ -3,38 +3,76 @@ package com.example.tryjetpackcomposed
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.tryjetpackcomposed.ui.theme.TryJetpackComposedTheme
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Row(
-                modifier = Modifier
-                    .width(WIDTH.dp)
-                    .fillMaxHeight(fraction = HEIGHT)
-                    .background(Color.Green),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = "Hello")
-                Text(text = "World")
-                Text(text = "Test")
+            LazyColumn {
+                itemsIndexed(
+                    listOf(
+                        "This",
+                        "is",
+                        "Jetpack",
+                        "Compose",
+                        "Testing",
+                        "Percobaan",
+                        "Mungkin",
+                        "Menjadi",
+                        "Makanan",
+                        "Yang"
+                    )
+                ) { index, string ->
+                    Text(
+                        text = string,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp)
+                    )
+                }
             }
+
+
+//            LazyColumn {
+//                items(5000) {
+//                    Text(
+//                        text = "Item $it",
+//                        fontSize = 24.sp,
+//                        fontWeight = FontWeight.Bold,
+//                        textAlign = TextAlign.Center,
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 24.dp)
+//                    )
+//                }
+//            }
+
+//            val scrollState = rememberScrollState()
+//            Column(modifier = Modifier.verticalScroll(scrollState)) {
+//                for (i in 1..50) {
+//                    Text(
+//                        text = "Item $i",
+//                        fontSize = 24.sp,
+//                        fontWeight = FontWeight.Bold,
+//                        textAlign = TextAlign.Center,
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .padding(vertical = 24.dp)
+//                    )
+//                }
+//            }
         }
     }
 }
-
-const val WIDTH = 300
-const val HEIGHT = 0.7f
